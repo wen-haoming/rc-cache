@@ -1,0 +1,24 @@
+{
+  "name": "rc-keepalive",
+  "version": "0.0.1",
+  "description": "react-component keepalive",
+  "main": "index.js",
+  "keywords":[
+    "react",
+    "keeyalive",
+    "hooks"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wen-haoming/rc-keepalive.git"
+  },
+  "author": "haoming",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wen-haoming/rc-keepalive/issues"
+  },
+  "homepage": "https://github.com/wen-haoming/rc-keepalive#readme"
+}
