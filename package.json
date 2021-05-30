@@ -1,24 +1,59 @@
 {
-  "name": "rc-keepalive",
+  "name": "@wenhaoming/rc-keepalive",
   "version": "0.0.1",
   "description": "react-component keepalive",
-  "main": "index.js",
-  "keywords":[
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "keywords": [
     "react",
     "keeyalive",
     "hooks"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "test:update": "umi-test --updateSnapshot",
+    "tsc": "tsc --noEmit",
+    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./packages && npm run lint:prettier",
+    "lint:prettier": "npm run prettier &&  git diff && prettier --version && prettier --check \"packages/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto"
   },
+  "files": [
+    "lib",
+    "es",
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wen-haoming/rc-keepalive.git"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0"
+  },
+  "gitHooks": {
+    "pre-commit": "pretty-quick --staged",
+    "commit-msg": "node ./node_modules/@umijs/fabric/dist/verifyCommit.js"
   },
   "author": "haoming",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wen-haoming/rc-keepalive/issues"
   },
-  "homepage": "https://github.com/wen-haoming/rc-keepalive#readme"
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "homepage": "https://github.com/wen-haoming/rc-keepalive#readme",
+  "devDependencies": {
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/react-hooks": "^7.0.0",
+    "@umijs/fabric": "^2.5.13",
+    "@umijs/test": "^3.4.23",
+    "prettier": "^2.3.0",
+    "typescript": "^4.3.2",
+    "umi-test": "^1.9.6"
+  }
 }

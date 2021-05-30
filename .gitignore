@@ -1,0 +1,15 @@
+# dependencies
+**/node_modules
+
+/.vscode
+
+# production
+**/dist
+/.vscode
+**/**/lib/**
+**/**/es/**
+
+
+# visual studio code
+.history
+*.log
