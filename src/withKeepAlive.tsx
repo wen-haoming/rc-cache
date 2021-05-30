@@ -1,5 +1,3 @@
-function withKeepAlive(){
+function withKeepAlive() {}
 
-}
-
-export default withKeepAlive
+export default withKeepAlive;

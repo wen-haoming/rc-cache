@@ -1,2 +1,2 @@
-export { default as KeepAliveProvider } from './KeepAliveProvider'
-export { default as withKeepAlive } from './withKeepAlive'
+export { default as KeepAliveProvider } from './KeepAliveProvider';
+export { default as withKeepAlive } from './withKeepAlive';

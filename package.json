@@ -2,8 +2,8 @@
   "name": "@wenhaoming/rc-keepalive",
   "version": "0.0.1",
   "description": "react-component keepalive",
-  "main": "lib/index.js",
-  "module": "es/index.js",
+  "main": "./src/index.tsx",
+  "module": "./src/index.tsx",
   "types": "lib/index.d.ts",
   "keywords": [
     "react",
@@ -16,8 +16,9 @@
     "test:coverage": "umi-test --coverage",
     "test:update": "umi-test --updateSnapshot",
     "tsc": "tsc --noEmit",
-    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./packages && npm run lint:prettier",
-    "lint:prettier": "npm run prettier &&  git diff && prettier --version && prettier --check \"packages/**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto"
+    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx  --fix --format=pretty ./src && npm run lint:prettier",
+    "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
+    "lint:prettier": "npm run prettier &&  git diff && prettier --version && prettier --check \"./src\" --end-of-line auto"
   },
   "files": [
     "lib",
@@ -52,7 +53,9 @@
     "@testing-library/react-hooks": "^7.0.0",
     "@umijs/fabric": "^2.5.13",
     "@umijs/test": "^3.4.23",
+    "eslint": "^7.27.0",
     "prettier": "^2.3.0",
+    "pretty-quick": "^3.1.0",
     "typescript": "^4.3.2",
     "umi-test": "^1.9.6"
   }
