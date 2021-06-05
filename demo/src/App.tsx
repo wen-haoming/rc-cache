@@ -1,31 +1,22 @@
 import React, { useState } from 'react'
 import { KeepAliveProvider, withKeepAlive } from '../../src/index'
+import Comp1 from './Comp1'
+import Comp2 from './Comp2'
 
-const Comp1 = ()=>{
-    const [count,setCount] = useState(0)
-    return <div>
-        Demo1
-        <input type="text" onChange={(e)=>setCount(e.target.value)} />
-        <h1>{count}</h1>
-    </div>
-}
+const EnhanceComp1  = withKeepAlive(Comp1)
+const EnhanceComp2  = withKeepAlive(Comp2)
 
-const Comp2 = ()=>{
-    return <h1>
-      Demo2
-    </h1>
-}
-
-const App = ()=>{
-    console.log(KeepAliveProvider,withKeepAlive)
-    const [flag,setFlag] = useState(false)
+const App = () => {
+    const [flag, setFlag] = useState(false)
 
     return <div>
         <KeepAliveProvider>
-        <button onClick={()=>setFlag(!flag)}>change</button>
-        {
-            flag?<Comp2/>:<Comp1/>
-        }
+            <>
+                <button onClick={() => setFlag(!flag)}>change</button>
+                {
+                    flag ? <EnhanceComp2 /> : <EnhanceComp1 />
+                }
+            </>
         </KeepAliveProvider>
     </div>
 }
