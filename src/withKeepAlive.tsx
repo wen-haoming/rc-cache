@@ -18,7 +18,7 @@ function withKeepAlive<T extends Record<string, unknown>>(OldComponent: any) {
       } else {
         mount({ cacheId, element: <OldComponent {...props} dispatch={dispatch} /> });
       }
-    }, [contextState, dispatch, mount, props, OldComponent]);
+    }, [contextState, dispatch, mount, props]);
 
     return <div ref={divRef} id={`keep-alive-${cacheId}`} />;
   };
