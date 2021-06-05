@@ -1,16 +1,21 @@
 import type { ReactElement } from 'react';
-import React, { useReducer } from 'react';
+import React, { useCallback, useReducer } from 'react';
 import actionTypes from './actionTypes';
+import type { ContextType } from './context';
 import context from './context';
 import contextReducer from './contextReducer';
+
 interface Props {
   children?: ReactElement;
 }
 
-function KeepAliveProvider(props?: Props): ReactElement {
-  const [contextState, dispatch] = useReducer(contextReducer, {});
 
-  const mount = (({ cacheId, element }: { cacheId: string, OldComponent: any }) => {
+
+function KeepAliveProvider(props?: Props): ReactElement {
+  const [contextState, dispatch] = useReducer<typeof contextReducer>(contextReducer, {});
+
+
+  const mount = useCallback<ContextType['mount']>((({ cacheId, element }) => {
     if (!contextState[cacheId]) {
       dispatch({
         type: actionTypes.CREATE,
@@ -20,18 +25,15 @@ function KeepAliveProvider(props?: Props): ReactElement {
         }
       });
     }
-  })
-
-  console.log(contextState,'contextState')
+  }),[contextState])
 
   return <context.Provider value={{ contextState, dispatch, mount }}>
     <>
     {props!.children}
     {
       Object.values(contextState).map(({ cacheId, element }) => {
-
         return <div id={`ele-${cacheId}`} key={cacheId} ref={(dom) => {
-          let currentState = contextState[cacheId]
+          const currentState = contextState[cacheId as string]
           if (dom && !currentState.doms) {
             dispatch({
               type: actionTypes.CREATED,

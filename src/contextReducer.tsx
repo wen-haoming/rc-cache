@@ -1,6 +1,7 @@
 import ActionTypes from './actionTypes';
+import { ContextType } from './context';
 
-function contextReducer(initialState = {}, action: { type: ActionTypes; payload: any }) {
+function contextReducer(initialState: ContextType['contextState'] = {}, action: { type: ActionTypes; payload: any }) {
   const { payload } = action
   switch (action.type) {
     case ActionTypes.CREATE:
@@ -9,7 +10,7 @@ function contextReducer(initialState = {}, action: { type: ActionTypes; payload:
         [payload.cacheId]: {
           element: payload.element,
           status: ActionTypes.CREATE,
-          cacheId:payload.cacheId,
+          cacheId: payload.cacheId,
         }
       };
     case ActionTypes.CREATED:
@@ -18,7 +19,7 @@ function contextReducer(initialState = {}, action: { type: ActionTypes; payload:
         [payload.cacheId]: {
           ...initialState[payload.cacheId],
           doms: payload.doms,
-          cacheId:payload.cacheId
+          cacheId: payload.cacheId
         }
       };
     case ActionTypes.ACTIVE:
