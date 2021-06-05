@@ -1,27 +1,19 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "target": "esnext",
-    "moduleResolution": "node",
-    "jsx": "preserve",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "declaration": true,
-    "skipLibCheck": true
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react"
   },
-  "include": [
-    "**/src/**/*",
-    "**/docs/**/*",
-    "scripts/**/*",
-    "**/demos",
-    ".eslintrc.js",
-    "tests",
-    "jest.config.js",
-    "**/fixtures",
-    "./tests/no-duplicated.ts"
-  ]
+  "include": ["demo","src"]
 }
