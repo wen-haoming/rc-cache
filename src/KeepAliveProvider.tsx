@@ -34,7 +34,7 @@ function KeepAliveProvider(props?: Props): ReactElement {
         {Object.values(contextState).map(({ cacheId, element }) => {
           return (
             <div
-              id={`ele-${cacheId}`}
+              id={`keep-alive-element-${cacheId}`}
               key={cacheId}
               style={{display:'none'}}
               ref={(dom) => {
