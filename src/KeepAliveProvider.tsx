@@ -36,6 +36,7 @@ function KeepAliveProvider(props?: Props): ReactElement {
             <div
               id={`ele-${cacheId}`}
               key={cacheId}
+              style={{display:'none'}}
               ref={(dom) => {
                 const currentState = contextState[cacheId as string];
                 if (dom && !currentState.doms) {
