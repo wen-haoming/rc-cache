@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {withKeepAlive,KeepAliveProvider} from '../src'
 
 const Comp1 =  () => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState('');
     return (
       <div role="comp1">
         Demo1
@@ -10,8 +10,7 @@ const Comp1 =  () => {
           type="text"
           role="comp1-input"
           onChange={(e) => {
-            setCount(e.target.value);
-            console.log(e.target.value);
+            setCount(e.target.value );
           }}
         />
         <h1>{count}</h1>

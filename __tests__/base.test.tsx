@@ -38,7 +38,7 @@ describe('base test',()=>{
     })
     
 
-    test('change Comp2  then add count',async()=>{
+    test('change Comp2 then add count',async()=>{
         render(<App/>)
         const button  = screen.getByRole('btn')
         await fireEvent.click(button)
