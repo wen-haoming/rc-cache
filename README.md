@@ -1,3 +1,4 @@
-# rc-keepalive
+# rc-cache
 
-react-component keepalive
+
+React's cache component, similar to vue's keepalive
