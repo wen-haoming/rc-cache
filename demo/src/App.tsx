@@ -14,7 +14,7 @@ const App = () => {
       <KeepAliveProvider>
         <>
           <button onClick={() => setFlag(!flag)}>change</button>
-          {flag ? <EnhanceComp2 /> : <EnhanceComp1 />}
+          {flag ? <EnhanceComp2 /> : <EnhanceComp1  />}
         </>
       </KeepAliveProvider>
     </div>

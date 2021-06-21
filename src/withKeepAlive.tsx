@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import type { ContextType } from './context';
 import context from './context';
 
-function withKeepAlive<T extends Record<string, unknown>>(OldComponent: any) {
+function withKeepAlive<T extends Record<string, unknown>>(OldComponent: React.FC<T> | React.ClassicComponentClass<T>) {
   const cacheId = uuidv4();
 
   return function (props: T) {

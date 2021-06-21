@@ -1,7 +1,7 @@
 {
-  "name": "@wenhaoming/rc-keepalive",
+  "name": "rc-cache",
   "version": "0.0.1",
-  "description": "react-component keepalive",
+  "description": "react-component cache",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
