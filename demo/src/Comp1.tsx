@@ -10,7 +10,7 @@ const Comp1: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{overflow:'scroll',height:500,border:'1px solid #ccc'}}>
       Demo1
       <input
         type="text"
@@ -20,6 +20,11 @@ const Comp1: React.FC = () => {
         }}
       />
       <h1>{count}</h1>
+      {
+        Array(300).fill('').map((item,idx)=>{
+         return <p key={idx}>{idx}</p>
+        })
+      }
     </div>
   );
 };

@@ -27,8 +27,19 @@ function KeepAliveProvider(props?: Props): ReactElement {
     [contextState],
   );
 
+  const handleScroll = useCallback(
+    ({ cacheId, event }: { cacheId: string; event: any }) => {
+      if (contextState[cacheId]) {
+        let target = event.target;
+        let scrolls = contextState[cacheId].scrolls;
+        scrolls.set(target, target.scrollTop);
+      }
+    },
+    [contextState],
+  );
+
   return (
-    <context.Provider value={{ contextState, dispatch, mount }}>
+    <context.Provider value={{ contextState, dispatch, mount, handleScroll }}>
       <>
         {props!.children}
         {Object.values(contextState).map(({ cacheId, element }) => {

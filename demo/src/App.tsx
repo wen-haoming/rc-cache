@@ -3,7 +3,7 @@ import { KeepAliveProvider, withKeepAlive } from '../../src/index';
 import Comp1 from './Comp1';
 import Comp2 from './Comp2';
 
-const EnhanceComp1 = withKeepAlive(Comp1);
+const EnhanceComp1 = withKeepAlive(Comp1,{scroll:true});
 const EnhanceComp2 = withKeepAlive(Comp2);
 
 const App = () => {

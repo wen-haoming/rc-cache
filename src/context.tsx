@@ -10,10 +10,12 @@ export type ContextType = {
       status?: ActionType;
       cacheId?: string;
       doms?: HTMLElement[];
+      scrolls: WeakMap<any, any>;
     }
   >;
   mount: (props: { cacheId: string; element: ReactElement }) => void;
   dispatch: (props: { type: ActionType; payload: any }) => void;
+  handleScroll: (options: { cacheId: string; event: any }) => void;
 };
 
 export default React.createContext<ContextType>({} as ContextType);
