@@ -18,7 +18,7 @@ function withKeepAlive<T extends Record<string, unknown>>(
     const { contextState, mount, dispatch, handleScroll } = useContext<ContextType>(context);
 
     const ref = useRef<HTMLElement>(null);
-    const scrollEventRef = useRef<(event: HTMLElementEventMap['scroll']) => void>(()=>{})
+    const scrollEventRef = useRef<(event: HTMLElementEventMap['scroll']) => void>(() => {});
 
     useEffect(() => {
       return () => {
@@ -32,20 +32,18 @@ function withKeepAlive<T extends Record<string, unknown>>(
         const { doms } = currentState;
         doms.forEach((dom) => ref.current!.appendChild(dom));
         if (scroll) {
+          scrollEventRef.current = (event: HTMLElementEventMap['scroll']) => {
+            handleScroll({ cacheId, event });
+          };
           doms.forEach((dom) => {
             if (currentState.scrolls.get(dom)) {
               dom.scrollTop = currentState.scrolls.get(dom);
             }
           });
+          ref.current?.addEventListener('scroll', scrollEventRef.current, true);
         }
       } else {
         mount({ cacheId, element: <OldComponent {...props} dispatch={dispatch} /> });
-        if (scroll) {
-          scrollEventRef.current = (event: HTMLElementEventMap['scroll']) => {
-            handleScroll({ cacheId, event });
-          }
-          ref.current?.addEventListener('scroll', scrollEventRef.current, true);
-        }
       }
     }, [contextState, dispatch, handleScroll, mount, props]);
 

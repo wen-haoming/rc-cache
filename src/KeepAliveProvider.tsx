@@ -28,10 +28,10 @@ function KeepAliveProvider(props?: Props): ReactElement {
   );
 
   const handleScroll = useCallback(
-    ({ cacheId, event }: { cacheId: string; event: any }) => {
-      if (contextState[cacheId]) {
-        let target = event.target;
-        let scrolls = contextState[cacheId].scrolls;
+    ({ cacheId, event }: { cacheId: string; event: HTMLElementEventMap['scroll'] }) => {
+      if (contextState[cacheId] &&  event.target ) {
+        const {target} = event;
+        const {scrolls} = contextState[cacheId];
         scrolls.set(target, target.scrollTop);
       }
     },
