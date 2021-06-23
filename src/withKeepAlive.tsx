@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { ReactEventHandler } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type { ContextType } from './context';
 import context from './context';
@@ -19,18 +18,13 @@ function withKeepAlive<T extends Record<string, unknown>>(
     const { contextState, mount, dispatch, handleScroll } = useContext<ContextType>(context);
 
     const ref = useRef<HTMLElement>(null);
+    const scrollEventRef = useRef<(event: HTMLElementEventMap['scroll']) => void>(()=>{})
 
     useEffect(() => {
-      const scrollEvent = (event: HTMLElementEventMap['scroll']) => handleScroll({ cacheId, event });
-      if (scroll) {
-        ref.current?.addEventListener('scroll', scrollEvent, true);
-      }
       return () => {
-        if (scroll) {
-          ref.current?.removeEventListener('scroll', scrollEvent);
-        }
+        ref.current?.removeEventListener('scroll', scrollEventRef.current, true);
       };
-    }, [handleScroll]);
+    }, []);
 
     useEffect(() => {
       const currentState = contextState[cacheId];
@@ -46,12 +40,16 @@ function withKeepAlive<T extends Record<string, unknown>>(
         }
       } else {
         mount({ cacheId, element: <OldComponent {...props} dispatch={dispatch} /> });
+        if (scroll) {
+          scrollEventRef.current = (event: HTMLElementEventMap['scroll']) => {
+            handleScroll({ cacheId, event });
+          }
+          ref.current?.addEventListener('scroll', scrollEventRef.current, true);
+        }
       }
-    }, [contextState, dispatch, mount, props, scroll]);
+    }, [contextState, dispatch, handleScroll, mount, props]);
 
-  
-
-    return <div ref={ref as any}  id={`keep-alive-${cacheId}`} />;
+    return <div ref={ref as any} id={`keep-alive-${cacheId}`} />;
   };
 }
 
