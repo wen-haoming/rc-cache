@@ -14,7 +14,7 @@ function contextReducer(
           element: payload.element,
           status: ActionTypes.CREATE,
           cacheId: payload.cacheId,
-          scrolls: new WeakMap() // 滚动保存数据
+          scrolls: new WeakMap(), // 滚动保存数据
         },
       };
     case ActionTypes.CREATED:
@@ -28,7 +28,11 @@ function contextReducer(
       };
     case ActionTypes.ACTIVE:
       return {};
-
+    case ActionTypes.DESTROY:
+      Reflect.deleteProperty(initialState, payload);
+      return {
+        ...initialState
+      }
     default:
       return initialState;
   }

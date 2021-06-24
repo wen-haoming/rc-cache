@@ -29,17 +29,22 @@ function KeepAliveProvider(props?: Props): ReactElement {
 
   const handleScroll = useCallback(
     ({ cacheId, event }: { cacheId: string; event: HTMLElementEventMap['scroll'] }) => {
-      if (contextState[cacheId] &&  event.target ) {
-        const {target} = event;
-        const {scrolls} = contextState[cacheId];
+      if (contextState[cacheId] && event.target) {
+        const { target } = event;
+        const { scrolls } = contextState[cacheId];
         scrolls.set(target, target.scrollTop);
       }
     },
     [contextState],
   );
 
+  const dispatchAction: ContextType['dispatchAction'] = useCallback((options) => {
+    const { type, payload } = options;
+    dispatch({ type, payload });
+  }, []);
+
   return (
-    <context.Provider value={{ contextState, dispatch, mount, handleScroll }}>
+    <context.Provider value={{ contextState, dispatch, mount, handleScroll, dispatchAction }}>
       <>
         {props!.children}
         {Object.values(contextState).map(({ cacheId, element }) => {

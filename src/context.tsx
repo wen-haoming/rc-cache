@@ -16,6 +16,7 @@ export type ContextType = {
   mount: (props: { cacheId: string; element: ReactElement }) => void;
   dispatch: (props: { type: ActionType; payload: any }) => void;
   handleScroll: (options: { cacheId: string; event: any }) => void;
+  dispatchAction: (options: {type: ActionType.DESTROY,payload: any}) => void;
 };
 
 export default React.createContext<ContextType>({} as ContextType);
