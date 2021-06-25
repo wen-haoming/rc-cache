@@ -43,6 +43,8 @@ function KeepAliveProvider(props?: Props): ReactElement {
     dispatch({ type, payload });
   }, []);
 
+    console.log(Object.values(contextState).length,'===')
+
   return (
     <context.Provider value={{ contextState, dispatch, mount, handleScroll, dispatchAction }}>
       <>

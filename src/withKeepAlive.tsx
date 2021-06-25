@@ -28,6 +28,7 @@ function withKeepAlive<T extends Record<string, unknown>>(
       };
     }, []);
 
+
     useEffect(() => {
       const currentState = contextState[cacheId];
       if (currentState && currentState.doms) {
@@ -39,15 +40,20 @@ function withKeepAlive<T extends Record<string, unknown>>(
           };
           doms.forEach((dom) => {
             if (currentState.scrolls.get(dom)) {
+              // eslint-disable-next-line no-param-reassign
               dom.scrollTop = currentState.scrolls.get(dom);
             }
           });
           ref.current?.addEventListener('scroll', scrollEventRef.current, true);
         }
       } else {
+        if(ref.current && ref.current?.childNodes.length > 0){
+          ref.current.removeChild(ref.current.firstChild)
+        }
         mount({ cacheId, element: <OldComponent {...props} dispatchAction={dispatchAction} /> });
       }
-    }, [contextState, dispatch, handleScroll, mount, props]);
+
+    }, [contextState, dispatch, dispatchAction, handleScroll, mount, props]);
 
     return <div ref={ref as any} id={`keep-alive-${cacheId}`} />;
   };
